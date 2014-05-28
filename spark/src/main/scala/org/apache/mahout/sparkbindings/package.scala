@@ -46,10 +46,11 @@ package object sparkbindings {
 
   /**
    * Create proper spark context that includes local Mahout jars
-   * @param masterUrl
-   * @param appName
-   * @param customJars
-   * @return
+   * @param masterUrl Spark master url
+   * @param appName application name
+   * @param customJars custom jars to add (in addition to Mahout jars)
+   * @param sparkConf Spark configuration to use as a base
+   * @return Spark's DistributedContext
    */
   def mahoutSparkContext(masterUrl: String, appName: String,
       customJars: TraversableOnce[String] = Nil,

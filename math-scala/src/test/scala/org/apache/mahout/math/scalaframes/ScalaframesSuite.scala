@@ -9,7 +9,7 @@ import scala.concurrent.duration.Duration
 
 class ScalaframesSuite extends FunSuite with MahoutSuite {
 
-  test("mutate") {
+  /*test("mutate") {
     val testFrame = new BaseDFrame()
 
     val mutatedFrame = testFrame.mutate(
@@ -156,7 +156,31 @@ class ScalaframesSuite extends FunSuite with MahoutSuite {
     val x = UnsafeUtil.getUnsafeLong(arr = buff, offset = 0l)
 
     control should equal(x)
-  }
+  }*/
 
+  test("DoubleDataFrameVector create, access through iterator") {
+    val vectorOfDoubles = Vector(1.0,2.0,3.4)
+    val doubleDataFrameVectorObj = new DoubleDataFrameVector(vectorOfDoubles)
+    val x=2.0
+    val result=doubleDataFrameVectorObj.apply(1)
+    Console.println("The value of result="+result)
+    result should equal(x)
+  }
+  
+  test("IntegerDataFrameVector create, access through iterator") {
+    val vectorOfInts = Vector(1,2,3)
+    val intDataFrameVectorObj = new IntegerDataFrameVector(vectorOfInts)
+    val x=2
+    val result=intDataFrameVectorObj.apply(1)
+    result should equal(x)
+  }
+  
+  test("StringDataFrameVector create, access through iterator") {
+    val vectorOfStrings = Vector("Give","me","a scotch")
+    val strDataFrameVectorObj = new StringDataFrameVector(vectorOfStrings)
+    val x="a scotch"
+    val result=strDataFrameVectorObj.apply(2)
+    result should equal(x)
+  }
 }
 

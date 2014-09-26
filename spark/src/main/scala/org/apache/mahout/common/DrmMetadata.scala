@@ -1,6 +1,6 @@
 package org.apache.mahout.common
 
-import scala.reflect.ClassTag
+import scala.reflect._
 import org.apache.hadoop.io._
 
 class DrmMetadata(
@@ -28,9 +28,9 @@ class DrmMetadata(
     case cz if (cz == classOf[LongWritable]) => ClassTag.Long -> w2long _
     case cz if (cz == classOf[DoubleWritable]) => ClassTag.Double -> w2double _
     case cz if (cz == classOf[FloatWritable]) => ClassTag.Float -> w2float _
-    case cz if (cz == classOf[Text]) => ClassTag(classOf[String]) -> w2string _
-    case cz if (cz == classOf[BooleanWritable]) => ClassTag(classOf[Boolean]) -> w2bool _
-    case cz if (cz == classOf[ArrayWritable]) => ClassTag(classOf[Array[Byte]]) -> w2bytes _
+    case cz if (cz == classOf[Text]) => classTag[String] -> w2string _
+    case cz if (cz == classOf[BooleanWritable]) => ClassTag.Boolean -> w2bool _
+    case cz if (cz == classOf[ArrayWritable]) => classTag[Array[Byte]] -> w2bytes _
     case _ => throw new IllegalArgumentException(s"Unsupported DRM key type:${keyTypeWritable.getName}")
   }
 
